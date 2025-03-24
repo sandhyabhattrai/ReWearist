@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+
+{% block title %} 
+ReWearist || All-Products 
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container-fluid">
+    <h1 class="my-4 text-muted text-center"> All Products </h1>
+
+    <table class="table table-bordered table-hover ">
+        <thead class="table-light">
+          <tr>
+            <th scope="col"> Name </th>
+            <th scope="col"> Category </th>
+            <th scope="col"> Colour </th>
+            <th scope="col"> Image Url </th>
+            <th scope="col"> Size </th>
+            <th scope="col"> In Stock </th>
+            <th scope="col"> Material </th>
+            <th scope="col"> price </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td> {{product.name}} </td>
+                <td> {{product.category}} </td>
+                <td> {{product.colour}} </td> 
+                <td> <img src="{{ product.imageurl }}" alt="{{product.name}}" height="110px" width="80px"> </td>
+                <td> {{product.size}} </td>
+                <td> {{product.instock}} </td>
+                <td> {{product.material}} </td>
+                <td> {{product.price}} </td>
+            </tr> 
+            {% endfor %}
+        </tbody>
+      </table>
+
+</div>
+
+{% endblock %}
+
