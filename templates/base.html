@@ -15,7 +15,7 @@
         class="d-flex flex-column  flex-shrink-0 p-3 text-bg-dark shadow"
         style="width: 280px; height: 100vh"
       >
-        <span class="fs-4 text-center">BookStore</span>
+        <span class="fs-4 text-center"> ReWearist </span>
         <hr />
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
@@ -24,11 +24,11 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'get-all-books'%}" class="nav-link text-white text-center"> Books </a>
+            <a href="{% url 'get-all-books'%}" class="nav-link text-white text-center"> Products </a>
           </li>
           <li>
             <a href="{% url 'post-book' %}" class="nav-link text-white text-center">
-              Add Book
+              Add Product
             </a>
           </li>
           <li>
@@ -46,7 +46,7 @@
             <a href="{% url 'all-orders' %}" class="nav-link text-white text-center"> Orders </a>
           </li>
         </ul>
-        <a href="{% url 'logout' %}" class="btn btn-warning">Logout</a>
+        <a href="{% url 'logout' %}" class="btn btn-warning"> Logout </a>
         <hr />
         <div class="dropdown">
           <img
@@ -56,7 +56,7 @@
             height="32"
             class="rounded-circle me-2"
           />
-          <strong>Admin</strong>
+          <strong> Admin </strong>
         </div>
     </aside>
     {% endif %}

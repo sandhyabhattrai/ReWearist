@@ -10,7 +10,6 @@ class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
-        # This method returns a string representation of the object
         return f"{self.user.username} - {self.book.name}"
     
 
@@ -20,7 +19,7 @@ class Order(models.Model):
         ('Esewa','Esewa'),
         ('Khalti','Khalti')
     )
-    book = models.ForeignKey(Products,on_delete=models.CASCADE)
+    product = models.ForeignKey(Products,on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     total_price = models.IntegerField(null=True)
@@ -32,5 +31,5 @@ class Order(models.Model):
     ordered_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.book.name}"
+        return f"{self.user.username} - {self.product.name}"
     

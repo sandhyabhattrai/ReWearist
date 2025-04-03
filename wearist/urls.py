@@ -8,10 +8,10 @@ urlpatterns = [
     path('deletecategory/<int:category_id>/',views.delete_category,name="delete-category"),
     path('updatecategory/<int:category_id>/',views.update_category,name="update-category"),
 
-    path('allbooks',views.get_all_books,name="get-all-books"),
-    path('addbook/',views.post_book,name="post-book"),
-    path('deletebook/<int:book_id>/',views.delete_book,name="delete-book"),
-    path('updatebook/<int:book_id>/',views.update_book,name="update-book"),
+    path('allproducts',views.get_all_products,name="get-all-products"),
+    path('addbook/',views.post_product,name="post-product"),
+    path('deleteproduct/<int:product_id>/',views.delete_product,name="delete-product"),
+    path('updateproduct/<int:product_id>/',views.update_product,name="update-product"),
 
     path('dashboard/',views.admin_dashboard,name="admin-dashboard"),
     path('allorders/',views.all_orders,name="all-orders"),

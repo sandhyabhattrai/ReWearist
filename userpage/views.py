@@ -12,51 +12,46 @@ from django.contrib import messages
 
 
 def homepage(request):
-    books = Book.objects.all().order_by('-id')[:8]
+    products = Products.objects.all().order_by('-id')[:8]
     return render(request,'client/homepage.html',{
-        'books': books
+        'products': products
     })
 
-def bookpage(request):
-    books = Book.objects.all().order_by('-created_at')
+def productpage(request):
+    products = Products.objects.all().order_by('-created_at')
+    return render(request,'client/productpage.html',{'products':products})
 
-    return render(request,'client/bookpage.html',{'books':books})
-
-def book_details(request, book_id):
-    book = Book.objects.get(id=book_id)
-    return render(request,'client/bookdetail.html',{'book':book})
+def product_details(request, product_id):
+    product = Products.objects.get(id=product_id)
+    return render(request,'client/detail.html',{'product':product})
 
 
 # add to cart
 @login_required
 @user_only
-def add_to_cart(request,book_id):
+def add_to_cart(request,product_id):
     user = request.user
-    book = Book.objects.get(id = book_id)
+    product = Products.objects.get(id = product_id)
 
-    check_book_presence = Cart.objects.filter(user = user,book = book)
+    check_product_presence = Cart.objects.filter(user = user, product= product)
 
-    if check_book_presence:
-        messages.add_message(request,messages.ERROR,'This book is already in your cart')
-        return redirect('/books/')
+    if check_product_presence:
+        messages.add_message(request,messages.ERROR,'This item is already in your cart')
+        return redirect('/products/')
     else:
-        cart = Cart.objects.create(user = user,book = book)
+        cart = Cart.objects.create(user = user,product = product)
         if cart:
-            messages.add_message(request,messages.SUCCESS,'Book added to cart successfully')
+            messages.add_message(request,messages.SUCCESS,'Item added to cart successfully')
             return redirect('/cart/')
         else:
-            messages.add_message(request,messages.ERROR,'Failed to add book to cart')
-            return redirect('/books/')
+            messages.add_message(request,messages.ERROR,'Failed to add this item to cart')
+            return redirect('/products/')
 
 @login_required
 @user_only       
-# Define a function called cart_page that takes in a request as a parameter
 def cart_page(request):
-    # Get the user from the request
     user = request.user
-    # Get the cart from the database that is associated with the user
     carts = Cart.objects.filter(user = user)
-    # Render the cart.html template and return it
     return render(request,'client/cart.html',{'carts':carts})
         
 
@@ -64,32 +59,32 @@ def cart_page(request):
 # delete from cart 
 @login_required
 @user_only
-def delete_from_cart(request, cart_id):
+def delete_from_cart(request, product_id):
     user = request.user
-    cart = Cart.objects.filter(user = user ,id = cart_id)
+    cart = Cart.objects.filter(user = user ,id = product_id)
     cart.delete()
-    messages.add_message(request,messages.SUCCESS,'Book removed from cart successfully')
+    messages.add_message(request,messages.SUCCESS,'Item removed from cart successfully. ')
     return redirect('/cart/')
 
 @login_required
 @user_only
-def user_order(request,cart_id,book_id):
+def user_order(request,cart_id,product_id):
     user = request.user
-    book = Book.objects.get(id = book_id)
+    product = Products.objects.get(id = product_id)
     cart = Cart.objects.get(id = cart_id)
     if request.method == 'POST':
         form = OrderFrom(request.POST)
         if form.is_valid():
             data = form.cleaned_data
             quantity = data['quantity']
-            price = book.price
+            price = product.price
             total_price = int(quantity) * int(price)
             payment_method = data['payment_method']
             contact_no = data['contact_no']
             address = data['address']
 
             order = Order.objects.create(
-                book = book,
+                product = product,
                 user = user,
                 quantity = quantity,
                 total_price = total_price,
@@ -100,7 +95,7 @@ def user_order(request,cart_id,book_id):
 
             if order.payment_method == 'Cash on Delivery':
                 cart.delete()
-                messages.add_message(request,messages.SUCCESS,'Order placed successfully')
+                messages.add_message(request,messages.SUCCESS,'Order placed successfully.')
                 return redirect('/myorders')
         else:
             messages.add_message(request,messages.ERROR,'Order Failed')
@@ -122,5 +117,5 @@ def mark_as_deliver(request,order_id):
     order = Order.objects.get(id = order_id)
     order.status = 'Delivered...'
     order.save()
-    messages.add_message(request,messages.SUCCESS,'Order marked as delivered')
+    messages.add_message(request,messages.SUCCESS,'Order marked as delivered.')
     return redirect('/myorders')

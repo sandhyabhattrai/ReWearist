@@ -1,7 +1,7 @@
 {% extends 'client/layout.html'%}
 
 {% block title %}
-Bookstore || {{book.name}}
+ReWearist || {{product.name}}
 {% endblock %}
 
 {% block content %}
@@ -9,16 +9,16 @@ Bookstore || {{book.name}}
     <div class="card mb-3 " style="max-width: 540px;">
         <div class="row g-0 p-3">
           <div class="col-md-4">
-            <img src="{{book.imageUrl}}" class="img-fluid rounded-start" alt="{{book.name}}">
+            <img src="{{product.imageUrl}}" class="img-fluid rounded-start" alt="{{product.name}}">
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h3 class="card-title">{{book.name}}</h3>
-              <h5 class="card-title">Author: {{book.author}}</h5>
-              <h5 class="text-muted">Price: Rs {{book.price}}</h5>
-              <p class="card-text">{{book.description}}</p>
-              <p class="card-text"><small class="text-body-secondary">Published Date: {{book.published_date}}</small></p>
-              <a href="{%url 'add-to-cart' book.id %}" class="btn btn-warning">Add to Cart</a>
+              <h3 class="card-title">{{product.name}}</h3>
+              <h5 class="card-title">Author: {{product.author}}</h5>
+              <h5 class="text-muted">Price: Rs {{product.price}}</h5>
+              <p class="card-text">{{product.description}}</p>
+              <p class="card-text"><small class="text-body-secondary">Published Date: {{product.published_date}}</small></p>
+              <a href="{%url 'add-to-cart' product.id %}" class="btn btn-warning">Add to Cart</a>
             </div>
           </div>
         </div>

@@ -1,14 +1,14 @@
 from django import forms
-from .models import Category,Book
+from .models import Category,Products
 
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['category_name']
 
-class BookForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
-        model = Book
+        model = Products
         exclude = ['created_at']
 
     def clean_price(self):
@@ -20,7 +20,7 @@ class BookForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data['name']
         if not name[0].isupper():
-            raise forms.ValidationError("Book name must start with capital letter.")
+            raise forms.ValidationError("product name must start with capital letter.")
         return name
     
     def clean(self):
@@ -28,15 +28,15 @@ class BookForm(forms.ModelForm):
         name = cleaned_data.get('name')
         description = cleaned_data.get('description')
         if name.lower() == description.lower():
-                raise forms.ValidationError("Book name and description can't be same.")
+                raise forms.ValidationError("Product name and description can't be same.")
         return cleaned_data
     
     def clean(self):
         cleaned_data = super().clean()
         name = cleaned_data.get('name')
-        author = cleaned_data.get('author')
-        if name.lower() == author.lower():
-                raise forms.ValidationError("Book name and author name can't be same.")
+        category = cleaned_data.get('category')
+        if name.lower() == category.lower():
+                raise forms.ValidationError("Product name and category name can't be same.")
         return cleaned_data
 
 

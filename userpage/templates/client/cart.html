@@ -1,7 +1,7 @@
 {% extends 'client/layout.html'%}
 
 {% block title %}
-Bookstore || My Cart
+Rewearist || My Cart
 {% endblock %}
 
 
@@ -19,7 +19,7 @@ Bookstore || My Cart
 
     {% if carts|length == 0 %}
         <div class="container">
-            <h3 class="text-center text-muted">Your cart is empty</h3>
+            <h3 class="text-center text-muted">Your cart is empty. </h3>
         </div>
     {% else %}
 
@@ -29,7 +29,7 @@ Bookstore || My Cart
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Image Url</th>
-            <th scope="col">Author</th>
+            <th scope="col">Category</th>
             <th scope="col">Price</th>
             <th>Actions</th>
           </tr>
@@ -37,14 +37,14 @@ Bookstore || My Cart
         <tbody>
             {% for cart in carts %}
             <tr>
-                <td >{{cart.book.name}}</td>
+                <td >{{cart.product.name}}</td>
                 <td >
-                    <img src="{{ cart.book.imageUrl}}" alt="{{book.name}}" height="100px" width="100px">
+                    <img src="{{ cart.product.imageUrl}}" alt="{{book.name}}" height="100px" width="100px">
                 </td>
-                <td >{{cart.book.author}}</td>
-                <td >{{cart.book.price}}</td>
+                <td >{{cart.product.category}}</td>
+                <td >{{cart.product.price}}</td>
                 <td>
-                  <a href="{% url 'user-order' cart.id cart.book.id %}" class="btn btn-success">Order Now</a>&nbsp;&nbsp;
+                  <a href="{% url 'user-order' cart.id cart.product.id %}" class="btn btn-success">Order Now</a>&nbsp;&nbsp;
                   <a href="{% url 'delete-from-cart' cart.id%}" class="btn btn-danger">Delete</a>
               </td>
             </tr>

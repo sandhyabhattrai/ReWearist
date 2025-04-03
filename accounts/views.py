@@ -24,12 +24,6 @@ def login_user(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            # data{
-            #     'username': 'Sachin',
-            #     'password': '12345678'            
-            # }
-            # print(data['username'])
-            # print(data['password'])
             user = authenticate(username=data['username'],password=data['password'])
             if user is not None:
                 login(request,user)

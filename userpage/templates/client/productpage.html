@@ -1,12 +1,12 @@
 {% extends 'client/layout.html'%}
 
 {% block title %}
-Bookstore || Books
+ReWearist || Products
 {% endblock %}
 
 {% block content %}
 <div class="container my-4">
-    <h1 class="text-muted text-center">All Books</h1>
+    <h1 class="text-muted text-center">All Products</h1>
 
     <!-- to show the messages -->
     {% for msg in messages %}
@@ -19,15 +19,15 @@ Bookstore || Books
 
     <!-- bookstart  -->
     <div class="row row-cols-1 row-cols-md-4 g-4">
-        {% for book in books%}
+        {% for product in products%}
         <div class="col">
           <div class="card p-2">
-            <img src="{{book.imageUrl}}" class="card-img-top" alt="..." height="200px">
+            <img src="{{ product.imageUrl}}" class="card-img-top" alt="..." height="200px">
             <div class="card-body">
-              <h3 class="card-title">{{book.name}}</h3>
-              <h5>Price: RS {{book.price}}</h5>
+              <h3 class="card-title">{{product.name}}</h3>
+              <h5>Price: RS {{product.price}}</h5>
             </div>
-            <a href="{% url 'book-details' book.id %}" class="btn btn-warning">View Details</a>
+            <a href="{% url 'product-details' product.id %}" class="btn btn-warning">View Details</a>
           </div>
         </div>
         {% endfor %}

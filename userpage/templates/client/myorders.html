@@ -1,7 +1,7 @@
 {% extends 'client/layout.html'%}
 
 {% block title %}
-Bookstore || My Orders
+ReWearist || My Orders
 {% endblock %}
 
 
@@ -29,7 +29,7 @@ Bookstore || My Orders
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Image Url</th>
-            <th scope="col">Author</th>
+            <th scope="col">Category</th>
             <th scope="col">Total Price</th>
             <th>Payment Method</th>
             <th>Actions</th>
@@ -38,16 +38,16 @@ Bookstore || My Orders
         <tbody>
             {% for order in orders %}
             <tr>
-                <td >{{order.book.name}}</td>
+                <td >{{order.product.name}}</td>
                 <td >
-                    <img src="{{ order.book.imageUrl}}" alt="{{book.name}}" height="100px" width="100px">
+                    <img src="{{ order.product.imageUrl}}" alt="{{product.name}}" height="100px" width="100px">
                 </td>
-                <td >{{order.book.author}}</td>
+                <td >{{order.product.category}}</td>
                 <td >{{order.total_price}}</td>
                 <td>{{order.payment_method}}</td>
                 <td>
                     {% if order.status == 'Pending...' %}
-                  <a href="{% url 'mark-as-deliver' order.id %}" class="btn btn-success">Mark as Deliver</a>
+                  <a href="{% url 'mark-as-deliver' order.id %}" class="btn btn-success">Mark as Delivered</a>
                   {% else %}
                   <div class="badge text-bg-success">{{order.status}}</div>
                   {% endif %}
