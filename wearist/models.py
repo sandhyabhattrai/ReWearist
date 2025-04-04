@@ -5,7 +5,7 @@ from django.db import models
 from django.db import models
 
 class Category(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    category_name = models.CharField(max_length=200, unique=True)
     
     def __str__(self):
         return self.name
@@ -20,6 +20,7 @@ class Products(models.Model):
     material = models.CharField(max_length=200, null=True, blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     description = models.TextField(max_length=800, null= True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name

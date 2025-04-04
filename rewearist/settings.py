@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'wearist',
     'userpage',
     'accounts',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
