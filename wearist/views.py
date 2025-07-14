@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from . models import Products,Category
-from .forms import CategoryForm,ProductForm
+from . models import Products, Category
+from .forms import CategoryForm, ProductForm
 from django.contrib.auth.decorators import login_required
 from accounts.auth import admin_only
 from userpage.models import Order
@@ -78,7 +78,7 @@ def post_product(request):
         if form.is_valid():
             form.save()
             messages.add_message(request,messages.SUCCESS,'Product Added Successfully')
-            return redirect('/admin/allproducts') #http://localhost:8000/books
+            return redirect('/admin/allproducts')
         else:
             messages.add_message(request,messages.ERROR,'Failed to Add product')
             return render(request,'wearist/products/postproduct.html',{'form': form})

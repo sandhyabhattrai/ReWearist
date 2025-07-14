@@ -12,7 +12,7 @@ from django.contrib import messages
 
 
 def homepage(request):
-    products = Products.objects.all().order_by('-id')[:8]
+    products = Products.objects.all().order_by('-id')[:4]
     return render(request,'client/homepage.html',{
         'products': products
     })
@@ -23,7 +23,7 @@ def productpage(request):
 
 def product_details(request, product_id):
     product = Products.objects.get(id=product_id)
-    return render(request,'client/detail.html',{'product':product})
+    return render(request,'client/productdetail.html',{'product':product})
 
 
 # add to cart
