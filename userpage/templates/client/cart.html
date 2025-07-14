@@ -23,12 +23,12 @@ Rewearist || My Cart
         </div>
     {% else %}
 
-    <!-- table to show the content of book  -->
+    <!-- table to show the content of cart  -->
     <table class="table table-striped table-hover table-bordered">
         <thead>
           <tr>
             <th scope="col">Name</th>
-            <th scope="col">Image Url</th>
+            <th scope="col">Image</th>
             <th scope="col">Category</th>
             <th scope="col">Price</th>
             <th>Actions</th>
@@ -39,7 +39,7 @@ Rewearist || My Cart
             <tr>
                 <td >{{cart.product.name}}</td>
                 <td >
-                    <img src="{{ cart.product.imageUrl}}" alt="{{book.name}}" height="100px" width="100px">
+                    <img src="{{ cart.product.image.url }}" alt="{{product.name}}" height="200px" width="100px">
                 </td>
                 <td >{{cart.product.category}}</td>
                 <td >{{cart.product.price}}</td>

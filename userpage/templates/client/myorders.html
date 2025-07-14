@@ -28,7 +28,7 @@ ReWearist || My Orders
         <thead>
           <tr>
             <th scope="col">Name</th>
-            <th scope="col">Image Url</th>
+            <th scope="col">Image </th>
             <th scope="col">Category</th>
             <th scope="col">Total Price</th>
             <th>Payment Method</th>
@@ -40,7 +40,7 @@ ReWearist || My Orders
             <tr>
                 <td >{{order.product.name}}</td>
                 <td >
-                    <img src="{{ order.product.imageUrl}}" alt="{{product.name}}" height="100px" width="100px">
+                    <img src="{{ order.product.image.url }}" alt="{{product.name}}" height="130px" width="100px">
                 </td>
                 <td >{{order.product.category}}</td>
                 <td >{{order.total_price}}</td>

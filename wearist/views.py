@@ -1,12 +1,14 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
-from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.contrib import messages, admin
 from . models import Products, Category
 from .forms import CategoryForm, ProductForm
 from django.contrib.auth.decorators import login_required
 from accounts.auth import admin_only
 from userpage.models import Order
 from django.contrib.auth.models import User
+from django.urls import path
+
 
 
 @login_required

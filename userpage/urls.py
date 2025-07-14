@@ -11,4 +11,7 @@ urlpatterns = [
     path('order/<int:cart_id>/<int:product_id>/',views.user_order,name='user-order'),
     path('myorders/',views.show_myorder,name='myorders'),
     path('markasdeliver/<int:order_id>/',views.mark_as_deliver,name='mark-as-deliver'),
+    path('pricing/', views.pricing, name='pricing'),
+    path('faq/', views.faq, name='faq'),
+    path('about/', views.about, name='about'),
 ]

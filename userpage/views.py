@@ -1,12 +1,14 @@
+
 from django.shortcuts import render,redirect
 from wearist.models import Products
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Cart,Order
+from .models import Cart,Order, Products
 from django.contrib import messages
 from accounts.auth import user_only
 from .forms import OrderFrom
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -29,23 +31,24 @@ def product_details(request, product_id):
 # add to cart
 @login_required
 @user_only
-def add_to_cart(request,product_id):
+def add_to_cart(request, product_id):
     user = request.user
-    product = Products.objects.get(id = product_id)
+    product = get_object_or_404(Products, id=product_id)
 
-    check_product_presence = Cart.objects.filter(user = user, product= product)
+    check_product_presence = Cart.objects.filter(user=user, product=product)
 
-    if check_product_presence:
-        messages.add_message(request,messages.ERROR,'This item is already in your cart')
+    if check_product_presence.exists():
+        messages.error(request, 'This item is already in your cart')
         return redirect('/products/')
     else:
-        cart = Cart.objects.create(user = user,product = product)
+        cart = Cart.objects.create(user=user, product=product)
         if cart:
-            messages.add_message(request,messages.SUCCESS,'Item added to cart successfully')
+            messages.success(request, 'Item added to cart successfully')
             return redirect('/cart/')
         else:
-            messages.add_message(request,messages.ERROR,'Failed to add this item to cart')
+            messages.error(request, 'Failed to add this item to cart')
             return redirect('/products/')
+
 
 @login_required
 @user_only       
@@ -59,9 +62,9 @@ def cart_page(request):
 # delete from cart 
 @login_required
 @user_only
-def delete_from_cart(request, product_id):
+def delete_from_cart(request, cart_id):
     user = request.user
-    cart = Cart.objects.filter(user = user ,id = product_id)
+    cart = Cart.objects.filter(user = user ,id = cart_id)
     cart.delete()
     messages.add_message(request,messages.SUCCESS,'Item removed from cart successfully. ')
     return redirect('/cart/')
@@ -108,7 +111,7 @@ def user_order(request,cart_id,product_id):
 def show_myorder(request):
     user = request.user
     orders = Order.objects.filter(user = user)
-    return render(request,'client/myorder.html',{'orders':orders})
+    return render(request,'client/myorders.html',{'orders':orders})
 
 
 @login_required
@@ -119,3 +122,12 @@ def mark_as_deliver(request,order_id):
     order.save()
     messages.add_message(request,messages.SUCCESS,'Order marked as delivered.')
     return redirect('/myorders')
+
+def pricing(request):
+    return render(request, 'client/pricing.html')
+
+def faq(request):
+    return render(request, 'client/faq.html')
+
+def about(request):
+    return render(request, 'client/about.html')

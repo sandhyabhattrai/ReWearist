@@ -6,11 +6,11 @@ from wearist.models import Products
 
 class Cart(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE)
-    book = models.ForeignKey(Products,on_delete = models.CASCADE)
+    product = models.ForeignKey(Products,on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.book.name}"
+        return f"{self.user.username} - {self.product.name}"
     
 
 class Order(models.Model):

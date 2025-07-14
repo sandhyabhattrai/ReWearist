@@ -22,7 +22,7 @@ ReWearist || Products
         {% for product in products%}
         <div class="col">
           <div class="card p-2">
-            <img src="{{ product.imageUrl}}" class="card-img-top" alt="..." height="200px">
+            <img src="{{ product.image.url}}" class="card-img-top" alt=" {{ product.name }}" height="325 px">
             <div class="card-body">
               <h3 class="card-title">{{product.name}}</h3>
               <h5>Price: RS {{product.price}}</h5>

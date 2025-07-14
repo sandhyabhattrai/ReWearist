@@ -26,6 +26,10 @@ ReWearist || {{product.name}}
                     <p class="card-text"><strong>Price:</strong> ₹{{ product.price }}</p>
                     <p class="card-text"><strong>Description:</strong><br>{{ product.description|default:"No description provided."|linebreaksbr }}</p>
                     <p class="card-text text-muted"><small>Created on {{ product.created_at|date:"F j, Y" }}</small></p>
+                    <form method="post" action="{% url 'add-to-cart' product.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary mt-3">🛒 Add to Cart</button>
+                    </form>
                 </div>
             </div>
         </div>

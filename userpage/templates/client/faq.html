@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}FAQs | ReWearist{% endblock %}
+
+{% block main_content %}
+<div class="container mt-5">
+  <div class="mx-auto p-4 shadow-sm bg-white rounded" style="max-width: 850px;">
+    <h2 class="text-center mb-4 fw-bold">Frequently Asked Questions</h2>
+
+    <div class="accordion" id="faqAccordion">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">
+            What is ReWearist?
+          </button>
+        </h2>
+        <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            ReWearist is a sustainable fashion platform where you can buy, sell or donate pre-loved clothes. You can rent the available clothes as well as put your clothes on rent here.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
+            Is it free to join?
+          </button>
+        </h2>
+        <div id="a2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes! Browsing and creating an account is free. We also offer premium features if you wish to upgrade anytime.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3" aria-expanded="false" aria-controls="a3">
+            How do I sell my clothes?
+          </button>
+        </h2>
+        <div id="a3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Simply sign up as a seller, upload product details and images, and we’ll help list your items! And another buyer user will see and purchase them.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a4" aria-expanded="false" aria-controls="a4">
+            How do I rent the clothes?
+          </button>
+        </h2>
+        <div id="a4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Simply sign up as a user, and see the product details and images, and rent it! You can rent for 3 days or more.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+Pricing | ReWearist
+{% endblock %}
+
+{% block main_content %}
+<div class="container mt-5">
+  <div class="mx-auto p-4 shadow-sm bg-white rounded" style="max-width: 950px;">
+    <h2 class="text-center mb-4 fw-bold">Choose Your Plan</h2>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card border-primary h-100">
+          <div class="card-header bg-primary text-white text-center">Freemium</div>
+          <div class="card-body">
+            <h3 class="card-title text-center">Rs. 0/month</h3>
+            <ul class="list-unstyled text-center">
+              <li>✔ Browse products</li>
+              <li>✔ Wishlist items</li>
+              <li>✘ Priority support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card border-success h-100">
+          <div class="card-header bg-success text-white text-center">Premium</div>
+          <div class="card-body">
+            <h3 class="card-title text-center">Rs. 9.99/month</h3>
+            <ul class="list-unstyled text-center">
+              <li>✔ All Basic features</li>
+              <li>✔ Early access to sales</li>
+              <li>✔ Priority support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card border-warning h-100">
+          <div class="card-header bg-warning text-dark text-center">Reseller</div>
+          <div class="card-body">
+            <h3 class="card-title text-center">Rs. 19.99/month</h3>
+            <ul class="list-unstyled text-center">
+              <li>✔ Add and sell your items</li>
+              <li>✔ Analytics dashboard</li>
+              <li>✔ Premium customer support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
