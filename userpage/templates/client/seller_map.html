@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Seller Map | ReWearist{% endblock %}
+
+{% block main_content %}
+
+<p>Your Coordinates: {{ my_lat }} , {{ my_lng }}</p>
+<p>Users Count: {{ users|length }}</p>
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<div class="container py-4">
+  <h2 class="text-center mb-4">📍 Users Around You</h2>
+  <div id="map" style="height: 500px;"></div>
+</div>
+
+<script>
+  // Set initial view to current user's location
+  var map = L.map('map').setView([{{ my_lat|default:27.7 }}, {{ my_lng|default:85.3 }}], 7);
+
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Add current user's marker
+  L.marker([{{ my_lat }}, {{ my_lng }}])
+      .addTo(map)
+      .bindPopup("<b>You</b>").openPopup();
+
+  // Add other users’ markers
+  {% for user in users %}
+    {% if user.lat and user.lng %}
+      L.marker([{{ user.lat }}, {{ user.lng }}])
+        .addTo(map)
+        .bindPopup(
+          `<b>{{ user.name|escape }}</b><br>{{ user.address|default:"(no address)"|escape }}<br><i>{{ user.distance }} km away</i>`
+        );
+    {% endif %}
+  {% endfor %}
+</script>
+{% endblock %}

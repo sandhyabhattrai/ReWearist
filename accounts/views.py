@@ -17,7 +17,7 @@ def register_user(request):
             messages.add_message(request,messages.ERROR,"User register failed")
             return render(request,'accounts/register.html',{'form':form})
             
-    return render(request,'accounts/register.html',{'form':UserCreationForm})
+    return render(request,'accounts/register.html',{'form':UserCreationForm()})
 
 def login_user(request):
     if request.method == 'POST':

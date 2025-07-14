@@ -31,10 +31,19 @@
           
           {% if user.is_authenticated %}
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'seller-map' %}">Map</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'cart' %}">MyCart</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'myorders' %}">MyOrders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'update-location' %}">Update Map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About Us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>

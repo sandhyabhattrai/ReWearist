@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+location | ReWearist
+{% endblock %}
+
+{% block main_content %}
+{% load static %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<h2>Mark your location</h2>
+
+<div id="map" style="height: 400px;"></div>
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+
+<script>
+  var map = L.map('map').setView([27.7, 85.3], 7);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  var marker;
+
+  map.on('click', function(e) {
+    var lat = e.latlng.lat;
+    var lng = e.latlng.lng;
+
+    if (marker) {
+      marker.setLatLng(e.latlng);
+    } else {
+      marker = L.marker(e.latlng).addTo(map);
+    }
+
+    document.getElementById('id_latitude').value = lat;
+    document.getElementById('id_longitude').value = lng;
+  });
+</script>
+
+{% endblock %}
